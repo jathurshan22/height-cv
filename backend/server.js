@@ -20,11 +20,27 @@ const app = express();
 
 app.disable('x-powered-by');
 app.use((req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('X-Frame-Options','DENY');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');next();});
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }));
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((value) => value.trim())
+  .filter(Boolean);
+
+app.use(cors({
+  origin(origin, callback) {
+    // Allow server-to-server requests and local tooling with no Origin header.
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked origin: ${origin}`));
+  },
+  credentials: true,
+}));
 app.use(apiLimiter);
 app.use(express.json({ limit: '2mb' }));
 
 // Health check
+app.get('/', (req, res) => res.json({ name: 'Height CV API', status: 'ok' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 // Routes
@@ -71,9 +87,7 @@ connectDB()
       {question:'How do I change my password or delete my account?',answer:'Head to Settings > Security to change your password, or Settings > Danger zone to permanently delete your account and all associated CVs.',category:'Account',order:6},
       {question:'Is my data private?',answer:'Your CVs and account details are stored securely and are only visible to you. Administrators can see aggregate usage statistics but do not share your personal CV content.',category:'Privacy',order:7}
     ]);
-    app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
   })
 .catch((err) => {
     console.error('MongoDB Connection Failed ❌');

@@ -13,7 +13,7 @@ Add your frontend origins under **Authorized JavaScript origins**:
 
 ## 2. Configure the frontend
 
-Create `frontend/.env` (the `.env` file beside `package.json`) and set:
+Create `.env` (the `.env` file beside the frontend `package.json`) and set:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
@@ -53,3 +53,27 @@ npm run dev
 4. The backend validates the credential with Google's token validation endpoint and checks the client ID/audience and verified email.
 5. Height CV creates a new user or links Google to an existing account with the same email.
 6. Height CV returns its normal JWT, so all existing protected pages and API calls work exactly like email/password login.
+
+## Vercel production checklist
+
+For a Vercel deployment, add these environment variables to **Production and Preview**:
+
+```env
+VITE_API_URL=https://height-cv-api.onrender.com/api
+VITE_GOOGLE_CLIENT_ID=YOUR_GOOGLE_WEB_CLIENT_ID
+```
+
+The frontend API client also normalizes the URL, so `https://height-cv-api.onrender.com` is accepted and automatically gets `/api`.
+
+After changing Vercel environment variables, redeploy the latest deployment because Vite injects `VITE_*` values at build time.
+
+For Render, configure the backend service with root directory `backend`, build command `npm install`, and start command `npm start`. Set:
+
+```env
+MONGODB_URI=...
+JWT_SECRET=...
+CLIENT_URL=https://YOUR-VERCEL-DOMAIN.vercel.app
+GOOGLE_CLIENT_ID=YOUR_GOOGLE_WEB_CLIENT_ID
+```
+
+`GOOGLE_CLIENT_ID` must be the same Web Client ID used by `VITE_GOOGLE_CLIENT_ID`. In Google Cloud Console, add the exact Vercel HTTPS origin under **Authorized JavaScript origins**.

@@ -1,5 +1,9 @@
-const API_BASE =
-  import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const rawApiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').trim();
+// Accept both deployment styles:
+//   https://host.example/api
+//   https://host.example
+// Every API method below uses paths without the /api prefix.
+const API_BASE = `${rawApiUrl.replace(/\/+$/, '')}${/\/api$/i.test(rawApiUrl.replace(/\/+$/, '')) ? '' : '/api'}`;
 
 // ================================
 // TYPES
