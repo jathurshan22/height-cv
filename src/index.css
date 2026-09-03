@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-surface-page text-ink font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-ink;
+  }
+  ::selection {
+    @apply bg-accent/15 text-ink;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-soft;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-white hover:bg-ink-soft active:bg-ink px-4 py-2.5;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent-hover px-4 py-2.5;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink-soft hover:bg-surface-subtle px-4 py-2.5;
+  }
+  .btn-outline {
+    @apply btn border border-line bg-surface text-ink hover:bg-surface-subtle px-4 py-2.5;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted/70 transition focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/10;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink-soft;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .section-eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wider text-accent;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+  background-clip: content-box;
+}
+
+/* CV preview (A4) */
+.cv-page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  transform-origin: top center;
+}
+@media print {
+  .cv-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+}
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  body * { visibility: hidden !important; }
+  #cv-print-target, #cv-print-target * { visibility: visible !important; }
+  #cv-print-target {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    max-width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+  #cv-print-target > div {
+    box-shadow: none !important;
+  }
+  .cv-print-page { break-inside: auto; }
+}
+
+
+/* Height AI dark theme */
+.dark body { background: #0b1020; color: #e5e7eb; }
+.dark .bg-white { background-color: #111827 !important; }
+.dark .bg-surface { background-color: #111827 !important; }
+.dark .bg-surface-page { background-color: #0b1020 !important; }
+.dark .bg-surface-subtle { background-color: #172033 !important; }
+.dark .text-ink, .dark h1, .dark h2, .dark h3, .dark h4 { color: #f8fafc !important; }
+.dark .text-ink-soft { color: #cbd5e1 !important; }
+.dark .text-ink-muted { color: #94a3b8 !important; }
+.dark .border-line, .dark .border-slate-200, .dark .border-slate-300 { border-color: #263247 !important; }
+.dark .bg-slate-50 { background-color: #172033 !important; }
+.dark .bg-slate-100 { background-color: #1e293b !important; }
+.dark .text-slate-950, .dark .text-slate-900, .dark .text-slate-800 { color: #f8fafc !important; }
+.dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-500 { color: #cbd5e1 !important; }
+.dark input, .dark textarea, .dark select { background-color: #0f172a; color: #f8fafc; border-color: #334155; }
+.dark input::placeholder, .dark textarea::placeholder { color: #64748b; }
+.dark .shadow-sm, .dark .shadow-soft, .dark .shadow-card, .dark .shadow-lift { box-shadow: 0 8px 30px rgba(0,0,0,.22); }
+
+/* --- Extended dark coverage (added) --- */
+
+/* Remaining slate shades */
+.dark .text-slate-950, .dark .text-slate-800 { color: #f8fafc !important; }
+.dark .text-slate-400 { color: #94a3b8 !important; }
+.dark .text-slate-300 { color: #cbd5e1 !important; }
+.dark .bg-slate-200 { background-color: #1e293b !important; }
+.dark .bg-slate-950 { background-color: #e2e8f0 !important; }   /* dark buttons invert to light on dark bg */
+.dark .bg-slate-950.text-white, .dark .btn-primary { background-color: #6366f1 !important; }
+.dark .border-slate-100, .dark .border-slate-400, .dark .border-slate-800 { border-color: #263247 !important; }
+.dark .divide-line > :not([hidden]) ~ :not([hidden]) { border-color: #263247 !important; }
+.dark .hover\:bg-slate-50:hover, .dark .hover\:bg-slate-100:hover { background-color: #1e293b !important; }
+
+/* Accent (indigo) — soft surfaces flatten, text lightens for contrast */
+.dark .bg-indigo-50, .dark .bg-accent-soft, .dark .bg-violet-50 { background-color: rgba(99,102,241,.16) !important; }
+.dark .bg-indigo-100, .dark .bg-violet-100 { background-color: rgba(99,102,241,.22) !important; }
+.dark .text-indigo-600, .dark .text-indigo-700, .dark .text-accent, .dark .text-violet-600 { color: #a5b4fc !important; }
+.dark .border-indigo-100, .dark .border-indigo-200, .dark .border-indigo-300, .dark .border-indigo-400 { border-color: rgba(99,102,241,.35) !important; }
+.dark .ring-indigo-50, .dark .ring-indigo-100 { --tw-ring-color: rgba(99,102,241,.25) !important; }
+
+/* Status tints */
+.dark .bg-emerald-50 { background-color: rgba(16,185,129,.14) !important; }
+.dark .bg-emerald-100 { background-color: rgba(16,185,129,.20) !important; }
+.dark .text-emerald-600, .dark .text-emerald-700 { color: #6ee7b7 !important; }
+.dark .border-emerald-100, .dark .border-emerald-200 { border-color: rgba(16,185,129,.30) !important; }
+.dark .bg-red-50 { background-color: rgba(239,68,68,.14) !important; }
+.dark .bg-red-100 { background-color: rgba(239,68,68,.20) !important; }
+.dark .text-red-500, .dark .text-red-600, .dark .text-red-700 { color: #fca5a5 !important; }
+.dark .border-red-200 { border-color: rgba(239,68,68,.30) !important; }
+.dark .bg-amber-50 { background-color: rgba(245,158,11,.14) !important; }
+.dark .text-amber-600, .dark .text-amber-700 { color: #fcd34d !important; }
+.dark .border-amber-100 { border-color: rgba(245,158,11,.30) !important; }
+
+/* ========================================================================
+   GLOBAL DARK THEME COVERAGE
+   Keep the existing page designs/animations, but make every application
+   surface follow the active theme. CV document previews intentionally stay
+   white because they represent the printable CV itself.
+   ======================================================================== */
+.dark body,
+.dark #root {
+  background-color: #0b1020;
+  color: #e5e7eb;
+}
+
+/* White / translucent application surfaces */
+.dark .bg-white:not(.cv-page),
+.dark .bg-white\/95:not(.cv-page),
+.dark .bg-white\/90:not(.cv-page),
+.dark .bg-white\/85:not(.cv-page),
+.dark .bg-white\/80:not(.cv-page),
+.dark .bg-white\/70:not(.cv-page),
+.dark .bg-white\/60:not(.cv-page) {
+  background-color: #111827 !important;
+}
+
+/* Don't darken printable CV pages or their descendants. */
+.dark .cv-page,
+.dark .cv-page .bg-white,
+.dark .cv-page .bg-white\/95,
+.dark .cv-page .bg-white\/90,
+.dark .cv-page .bg-white\/85,
+.dark .cv-page .bg-white\/80,
+.dark .cv-page .bg-white\/70,
+.dark .cv-page .bg-white\/60 {
+  background-color: #ffffff !important;
+}
+
+/* Slate / neutral application surfaces */
+.dark .bg-slate-50,
+.dark .bg-slate-100,
+.dark .bg-slate-200,
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-gray-200 {
+  background-color: #172033 !important;
+}
+
+.dark .bg-slate-950:not(.cv-page),
+.dark .bg-gray-950:not(.cv-page) {
+  background-color: #080d19 !important;
+}
+
+/* Text contrast across pages */
+.dark .text-slate-950,
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700,
+.dark .text-gray-950,
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700,
+.dark .text-black {
+  color: #f8fafc !important;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-400,
+.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-white:not(.cv-page *) {
+  color: #f8fafc;
+}
+
+/* Borders and dividers */
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-300,
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: #263247 !important;
+}
+
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #263247 !important;
+}
+
+/* Common hover surfaces */
+.dark .hover\:bg-white:hover,
+.dark .hover\:bg-white\/70:hover,
+.dark .hover\:bg-white\/60:hover,
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-gray-50:hover,
+.dark .hover\:bg-gray-100:hover {
+  background-color: #1e293b !important;
+}
+
+/* Inputs on every page */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Indigo / violet soft cards remain visibly themed in dark mode. */
+.dark .bg-indigo-50,
+.dark .bg-indigo-100,
+.dark .bg-violet-50,
+.dark .bg-violet-100,
+.dark .bg-blue-50,
+.dark .bg-blue-100 {
+  background-color: rgba(99, 102, 241, 0.16) !important;
+}
+
+.dark .text-indigo-600,
+.dark .text-indigo-700,
+.dark .text-violet-600,
+.dark .text-violet-700,
+.dark .text-blue-600,
+.dark .text-blue-700 {
+  color: #a5b4fc !important;
+}
+
+/* Status surfaces */
+.dark .bg-emerald-50,
+.dark .bg-emerald-100 { background-color: rgba(16,185,129,.14) !important; }
+.dark .bg-red-50,
+.dark .bg-red-100 { background-color: rgba(239,68,68,.14) !important; }
+.dark .bg-amber-50,
+.dark .bg-amber-100 { background-color: rgba(245,158,11,.14) !important; }
+.dark .text-emerald-600,
+.dark .text-emerald-700 { color: #6ee7b7 !important; }
+.dark .text-red-500,
+.dark .text-red-600,
+.dark .text-red-700 { color: #fca5a5 !important; }
+.dark .text-amber-500,
+.dark .text-amber-600,
+.dark .text-amber-700 { color: #fcd34d !important; }
+
+/* Scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+  background-clip: content-box;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+  background-clip: content-box;
+}
+
+/* Final dark-theme translucent surface fixes.
+   Tailwind opacity utilities use literal RGBA colors, so they need explicit
+   dark-theme overrides too. These keep light-theme styling unchanged. */
+.dark [class~="bg-surface/40"],
+.dark [class~="bg-surface/60"],
+.dark [class~="bg-surface/90"] {
+  background-color: rgba(17, 24, 39, 0.92) !important;
+}
+
+.dark [class~="bg-white/60"],
+.dark [class~="bg-white/70"],
+.dark [class~="bg-white/80"],
+.dark [class~="bg-white/85"],
+.dark [class~="bg-white/90"],
+.dark [class~="bg-white/95"] {
+  background-color: rgba(17, 24, 39, 0.92) !important;
+}
+
+.dark [class~="bg-slate-50/50"],
+.dark [class~="bg-slate-50/60"],
+.dark [class~="bg-slate-50/70"] {
+  background-color: #172033 !important;
+}
+
+.dark [class~="bg-indigo-50/40"],
+.dark [class~="bg-indigo-50/60"],
+.dark [class~="bg-indigo-50/70"] {
+  background-color: rgba(99, 102, 241, 0.16) !important;
+}
+
+.dark [class~="bg-violet-100/40"],
+.dark [class~="bg-violet-100/50"],
+.dark [class~="bg-violet-100/60"],
+.dark [class~="bg-violet-200/70"],
+.dark [class~="bg-indigo-100/60"],
+.dark [class~="bg-indigo-100/70"] {
+  background-color: rgba(99, 102, 241, 0.14) !important;
+}
+
+.dark [class~="bg-emerald-50/50"] {
+  background-color: rgba(16, 185, 129, 0.10) !important;
+}
+.dark [class~="bg-amber-50/50"] {
+  background-color: rgba(245, 158, 11, 0.10) !important;
+}
+
+/* Light gradients used by support/contact cards. */
+.dark [class~="from-indigo-50"] {
+  --tw-gradient-from: #172033 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(23 32 51 / 0) var(--tw-gradient-to-position) !important;
+}
+.dark [class~="to-violet-50"] {
+  --tw-gradient-to: #1a2340 var(--tw-gradient-to-position) !important;
+}
+
+/* Keep translucent white decorative/interactive layers dark without
+   affecting the printable CV document. */
+.dark [class~="bg-white/10"],
+.dark [class~="bg-white/15"],
+.dark [class~="bg-white/20"] {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* A4 paper sizing for the CV Builder live preview and full-screen preview */
+.cv-a4-page {
+  width: 210mm !important;
+  min-width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-width: 210mm;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) {
+  .cv-a4-page {
+    width: 210mm !important;
+    min-width: 210mm;
+    max-width: 210mm;
+  }
+}
+
+/* A4 preview canvas: keeps the document at true A4 proportions while fitting
+   the available preview panel so the complete page stays visible. */
+.cv-a4-preview-shell {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.cv-a4-preview-shell > .cv-a4-page {
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.16);
+}
+
+/* Premium CV Builder workspace */
+.cv-builder-editor input,
+.cv-builder-editor textarea {
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+.cv-a4-preview-shell {
+  border-radius: 2px;
+}
+
+@media (min-width: 1280px) {
+  .cv-a4-preview-shell > div > .cv-page {
+    box-shadow: 0 20px 55px rgba(15, 23, 42, 0.18);
+  }
+}
