@@ -71,7 +71,9 @@ connectDB()
       {question:'How do I change my password or delete my account?',answer:'Head to Settings > Security to change your password, or Settings > Danger zone to permanently delete your account and all associated CVs.',category:'Account',order:6},
       {question:'Is my data private?',answer:'Your CVs and account details are stored securely and are only visible to you. Administrators can see aggregate usage statistics but do not share your personal CV content.',category:'Privacy',order:7}
     ]);
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
   })
 .catch((err) => {
     console.error('MongoDB Connection Failed ❌');
