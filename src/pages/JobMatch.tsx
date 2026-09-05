@@ -206,7 +206,7 @@ export function JobMatch() {
                     <p className="hidden">Compatibility</p>
                       
 
-                      <h2 className="mt-2 font-display text-2xl font-extrabold">
+                      <h2 className="mt-2 font-display text-2xl font-extrabold text-white">
                         Job Match Score
                       </h2>
 

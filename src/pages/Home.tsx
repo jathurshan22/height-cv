@@ -1035,7 +1035,7 @@ export function Home() {
                   ATS-friendly
                 </span>
 
-                <div className="relative mx-auto aspect-[0.707] w-full max-w-[330px] overflow-hidden rounded-xl bg-white shadow-[0_12px_35px_rgba(15,23,42,0.12)] transition-transform duration-500 group-hover:scale-[1.015]">
+                <div className="cv-thumb relative mx-auto aspect-[0.707] w-full max-w-[330px] overflow-hidden rounded-xl bg-white shadow-[0_12px_35px_rgba(15,23,42,0.12)] transition-transform duration-500 group-hover:scale-[1.015]">
                   <div className="h-full w-full overflow-hidden">
                     <TemplatePaper template={t} />
                   </div>

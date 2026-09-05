@@ -243,7 +243,7 @@ export function Templates() {
                     />
                   </div>
 
-                  <div className="h-full w-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_15px_35px_rgba(15,23,42,0.13)] transition-transform duration-500 group-hover:scale-[1.025]">
+                  <div className="cv-thumb h-full w-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_15px_35px_rgba(15,23,42,0.13)] transition-transform duration-500 group-hover:scale-[1.025]">
                     <TemplatePaper template={template} />
                   </div>
 
@@ -464,7 +464,7 @@ export function Templates() {
             {/* REAL LARGE CV */}
             <div className="flex-1 overflow-auto bg-slate-200 p-4 sm:p-8">
 
-              <div className="mx-auto w-full max-w-[800px] overflow-hidden rounded-lg bg-white shadow-2xl">
+              <div className="cv-thumb mx-auto w-full max-w-[800px] overflow-hidden rounded-lg bg-white shadow-2xl">
 
                 <TemplatePaper
                   template={selectedTemplate}

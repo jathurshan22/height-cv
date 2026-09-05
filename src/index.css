@@ -448,3 +448,50 @@
     box-shadow: 0 20px 55px rgba(15, 23, 42, 0.18);
   }
 }
+
+/* ========================================================================
+   TEMPLATE THUMBNAILS (Home + Templates previews)
+   A CV template preview represents a printed CV, so it must look identical
+   in light and dark mode: light paper, dark text, real accent colours.
+   The global dark-theme rules above remap bg-white / text-slate-* / etc.
+   with !important, which turns these previews dark. Anything inside a
+   .cv-thumb wrapper is reset back to the default (light) palette.
+   Intentionally-dark panels inside a template (e.g. bg-slate-900 sidebars,
+   bg-slate-950 headers) are NOT listed here, so they stay dark by design.
+   ======================================================================== */
+.dark .cv-thumb.bg-white,
+.dark .cv-thumb .bg-white { background-color: #ffffff !important; }
+.dark .cv-thumb .bg-slate-50 { background-color: #f8fafc !important; }
+.dark .cv-thumb .bg-slate-100 { background-color: #f1f5f9 !important; }
+.dark .cv-thumb .bg-slate-200 { background-color: #e2e8f0 !important; }
+.dark .cv-thumb .bg-emerald-50 { background-color: #ecfdf5 !important; }
+.dark .cv-thumb .bg-emerald-100 { background-color: #d1fae5 !important; }
+
+.dark .cv-thumb .text-slate-950 { color: #020617 !important; }
+.dark .cv-thumb .text-slate-900 { color: #0f172a !important; }
+.dark .cv-thumb .text-slate-800 { color: #1e293b !important; }
+.dark .cv-thumb .text-slate-700 { color: #334155 !important; }
+.dark .cv-thumb .text-slate-600 { color: #475569 !important; }
+.dark .cv-thumb .text-slate-500 { color: #64748b !important; }
+.dark .cv-thumb .text-slate-400 { color: #94a3b8 !important; }
+.dark .cv-thumb .text-emerald-600 { color: #059669 !important; }
+.dark .cv-thumb .text-emerald-700 { color: #047857 !important; }
+.dark .cv-thumb .text-indigo-600 { color: #4f46e5 !important; }
+.dark .cv-thumb .text-violet-600 { color: #7c3aed !important; }
+
+.dark .cv-thumb .border-slate-100 { border-color: #f1f5f9 !important; }
+.dark .cv-thumb .border-slate-200 { border-color: #e2e8f0 !important; }
+.dark .cv-thumb .border-slate-300 { border-color: #cbd5e1 !important; }
+.dark .cv-thumb .border-slate-400 { border-color: #94a3b8 !important; }
+.dark .cv-thumb .border-slate-800 { border-color: #1e293b !important; }
+.dark .cv-thumb .border-emerald-200 { border-color: #a7f3d0 !important; }
+
+/* ========================================================================
+   DARK MODE — hover states that the palette overrides above missed.
+   Tailwind hover: variants compile to their own class names, so rules like
+   `.dark .bg-surface-subtle` never match `hover:bg-surface-subtle`. Without
+   these, hovering a sidebar item in dark mode paints a bright white box.
+   ======================================================================== */
+.dark .hover\:bg-surface-subtle:hover { background-color: #172033 !important; }
+.dark .hover\:bg-surface:hover { background-color: #111827 !important; }
+.dark .hover\:text-ink:hover { color: #f8fafc !important; }
