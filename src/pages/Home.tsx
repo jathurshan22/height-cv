@@ -23,6 +23,7 @@ import {
 import { Navbar } from '../components/Navbar';
 import { Button } from '../components/ui/Button';
 import { useTemplates } from '../hooks/useTemplates';
+import { TemplatePaper } from '../components/TemplatePaper';
 import { api } from '../services/api';
 
 type HomeStats = {
@@ -1035,157 +1036,8 @@ export function Home() {
                 </span>
 
                 <div className="relative mx-auto aspect-[0.707] w-full max-w-[330px] overflow-hidden rounded-xl bg-white shadow-[0_12px_35px_rgba(15,23,42,0.12)] transition-transform duration-500 group-hover:scale-[1.015]">
-                  <div className="h-full w-full overflow-hidden bg-white p-5 text-slate-900">
-                    <div
-                      className="border-b-2 pb-3 text-center"
-                      style={{ borderColor: t.accent }}
-                    >
-                      <div className="text-[18px] font-black tracking-tight">
-                        JOHN CARTER
-                      </div>
-                      <div
-                        className="mt-1 text-[7px] font-bold"
-                        style={{ color: t.accent }}
-                      >
-                        SOFTWARE ENGINEER | FULL STACK DEVELOPER
-                      </div>
-                      <div className="mt-1.5 text-[5px] text-slate-500">
-                        Colombo, Sri Lanka | john@email.com | +94 77 123 4567
-                      </div>
-                    </div>
-
-                    <div className="mt-3">
-                      <div
-                        className="border-b pb-1 text-[7px] font-black uppercase tracking-wide"
-                        style={{
-                          color: t.accent,
-                          borderColor: `${t.accent}55`,
-                        }}
-                      >
-                        Professional Summary
-                      </div>
-                      <div className="mt-2 space-y-1">
-                        {[92, 96, 88, 72].map((w, index) => (
-                          <div
-                            key={index}
-                            className="h-[2.5px] rounded-full bg-slate-200"
-                            style={{ width: `${w}%` }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <div
-                        className="border-b pb-1 text-[7px] font-black uppercase tracking-wide"
-                        style={{
-                          color: t.accent,
-                          borderColor: `${t.accent}55`,
-                        }}
-                      >
-                        Work Experience
-                      </div>
-
-                      <div className="mt-2">
-                        <div className="flex items-start justify-between gap-2">
-                          <div>
-                            <div className="text-[6.5px] font-bold">
-                              Senior Software Engineer
-                            </div>
-                            <div className="text-[5px] text-slate-500">
-                              Lattice Labs, Remote
-                            </div>
-                          </div>
-                          <span className="text-[4.5px] text-slate-400">
-                            2022 – Present
-                          </span>
-                        </div>
-
-                        <div className="mt-1.5 space-y-1">
-                          {[96, 91, 82].map((w, index) => (
-                            <div
-                              key={index}
-                              className="h-[2.5px] rounded-full bg-slate-200"
-                              style={{ width: `${w}%` }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mt-3">
-                        <div className="flex items-start justify-between gap-2">
-                          <div>
-                            <div className="text-[6.5px] font-bold">
-                              Software Engineer
-                            </div>
-                            <div className="text-[5px] text-slate-500">
-                              Brightpath, Remote
-                            </div>
-                          </div>
-                          <span className="text-[4.5px] text-slate-400">
-                            2019 – 2021
-                          </span>
-                        </div>
-
-                        <div className="mt-1.5 space-y-1">
-                          {[94, 86, 76].map((w, index) => (
-                            <div
-                              key={index}
-                              className="h-[2.5px] rounded-full bg-slate-200"
-                              style={{ width: `${w}%` }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <div
-                        className="border-b pb-1 text-[7px] font-black uppercase tracking-wide"
-                        style={{
-                          color: t.accent,
-                          borderColor: `${t.accent}55`,
-                        }}
-                      >
-                        Education
-                      </div>
-                      <div className="mt-2 flex justify-between gap-2">
-                        <div>
-                          <div className="text-[6px] font-bold">
-                            BICT (Hons) – Information Technology
-                          </div>
-                          <div className="text-[5px] text-slate-500">
-                            Rajarata University of Sri Lanka
-                          </div>
-                        </div>
-                        <span className="text-[4.5px] text-slate-400">
-                          2024 – Present
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <div
-                        className="border-b pb-1 text-[7px] font-black uppercase tracking-wide"
-                        style={{
-                          color: t.accent,
-                          borderColor: `${t.accent}55`,
-                        }}
-                      >
-                        Skills
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {['React', 'TypeScript', 'Node.js', 'MongoDB', 'REST API', 'Git'].map((skill) => (
-                          <span
-                            key={skill}
-                            className="rounded border px-1.5 py-0.5 text-[4.5px] font-semibold text-slate-600"
-                            style={{ borderColor: `${t.accent}35` }}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="h-full w-full overflow-hidden">
+                    <TemplatePaper template={t} />
                   </div>
                 </div>
               </div>
